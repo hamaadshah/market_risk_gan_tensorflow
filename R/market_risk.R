@@ -5,6 +5,8 @@ options(scipen = 999)
 library(ggplot2)
 library(quantmod)
 library(MASS)
+library(scales)
+library(reshape2)
 
 # Let's take a year's worth of data.
 start <- as.Date("2016-01-01")
@@ -17,16 +19,16 @@ getSymbols(Symbols = "AAPL;GOOG;MSFT;INTC;BOX",
            to = end)
 
 # Create daily returns series based on close prices.
-data <- data.frame("Apple" = as.numeric(AAPL$AAPL.Close),
-                   "Google" = as.numeric(GOOG$GOOG.Close),
-                   "Microsoft" = as.numeric(MSFT$MSFT.Close),
-                   "Intel" = as.numeric(INTC$INTC.Close),
-                   "Box" = as.numeric(BOX$BOX.Close))
+data <- data.frame("Apple" = as.numeric(AAPL[, "AAPL.Close"]),
+                   "Google" = as.numeric(GOOG[, "GOOG.Close"]),
+                   "Microsoft" = as.numeric(MSFT[, "MSFT.Close"]),
+                   "Intel" = as.numeric(INTC[, "INTC.Close"]),
+                   "Box" = as.numeric(BOX[, "BOX.Close"]))
 ret.data <- diff(x = as.matrix(log(x = data)), lag = 1)
 colnames(ret.data) <- c("Apple", "Google", "Microsoft", "Intel", "Box")
 
 # Have a look at the returns data.
-head(x = ret.data)
+head(x = ret.data, n = 5)
 
 # Let's assume we have an equal weight for all assets in our 5 assets portfolio.
 # Based on those weightings calculate the portfolio returns on a daily basis.
@@ -37,6 +39,7 @@ port.data <- data.frame(apply(X = ret.data,
 colnames(port.data) <- "Portfolio.ret"
 
 # Plot the daily portfolio returns data.
+png(filename = "portfolio_returns.png", width = 600, height = 400)
 ggplot(data = port.data, 
        aes(x = Portfolio.ret)) +
 geom_density(fill = "skyblue", alpha = 0.25) +
@@ -44,8 +47,8 @@ ggtitle("KDE plot of portfolio returns") +
 xlab("Portfolio returns") +
 ylab("Density") +
 scale_x_continuous(labels = percent)
+dev.off()
 
-# Use the variance-covariance method for calculating Value-at-Risk (VaR).
 # Get mean returns vector.
 est.ret.vector <- colMeans(x = ret.data)
 
