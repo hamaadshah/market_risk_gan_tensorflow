@@ -98,3 +98,7 @@ VaR.MC <- quantile(x = sim.port.data$Portfolio.ret,
 VaR <- data.frame("Var.Covar" = VaR.var.covar,
                   "Hist.Sim" = VaR.hist.sim,
                   "MC" = VaR.MC)
+
+write.csv(x = ret.data, 
+          file = "ret_data.csv",
+          row.names = FALSE)
