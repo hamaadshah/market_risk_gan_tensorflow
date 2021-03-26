@@ -159,7 +159,7 @@ pytools==2019.1.1
 pytz==2019.3
 PyWavelets==0.5.1
 pyxdg==0.26
-PyYAML==5.3.1
+PyYAML==5.4
 pyzmq==18.1.1
 regex==2020.10.15
 reportlab==3.5.34
