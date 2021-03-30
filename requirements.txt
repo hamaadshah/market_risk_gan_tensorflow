@@ -140,7 +140,7 @@ pycuda==2019.1.2
 pycups==1.9.73
 pydot==1.4.1
 pyflakes==2.1.1
-Pygments==2.3.1
+Pygments==2.7.4
 PyGObject==3.36.0
 pygpu==0.7.6
 pyinotify==0.9.6
