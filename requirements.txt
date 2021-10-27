@@ -25,7 +25,7 @@ cryptography==2.8
 cupshelpers==1.0
 cycler==0.10.0
 Cython==0.29.14
-dask==2.8.1+dfsg
+dask==2021.10.0
 dbus-python==1.2.16
 decorator==4.4.2
 defer==1.0.6
