@@ -122,7 +122,7 @@ pathspec==0.8.0
 patsy==0.5.1
 pexpect==4.6.0
 pickleshare==0.7.5
-Pillow==7.0.0
+Pillow==9.0.1
 plotnine==0.7.1
 pluggy==0.13.0
 ply==3.11
