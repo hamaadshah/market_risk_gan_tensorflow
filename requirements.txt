@@ -14,7 +14,7 @@ blosc==1.7.0
 Brlapi==0.7.0
 cachetools==4.0.0
 caffe==1.0.0
-certifi==2019.11.28
+certifi==2022.12.7
 cffi==1.14.0
 chardet==3.0.4
 click==7.1.2
